@@ -1,0 +1,15 @@
+[build]
+target = "x86_64-pc-windows-msvc"
+rustflags = [
+    "-Zlocation-detail=none",
+#    "-Clink-arg=/ALIGN:16",
+    "-Clink-arg=/MERGE:.edata=.rdata",
+    "-Clink-arg=/MERGE:.rdata=.text",
+    "-Clink-arg=/MERGE:.pdata=.text",
+    "-Clink-arg=/DEBUG:NONE",
+    "-Clink-arg=/EMITPOGOPHASEINFO",
+]
+
+[unstable]
+build-std = ["std", "panic_abort"]
+build-std-features = ["panic_immediate_abort"]

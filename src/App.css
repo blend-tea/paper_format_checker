@@ -1,0 +1,52 @@
+.container {  
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas: "contents contents contents error_log";
+  margin: -8px;
+  background-color: #272727;
+  color: white;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.contents {
+  height: 100vh-20px;
+  padding: 10px 0 10px 0;
+  font-size: 14px;
+  scrollbar-color: #777 #444;
+  scrollbar-width: thin;
+  grid-area: contents; 
+  position: relative;
+}
+
+#editor{
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #272727;
+}
+.ace_gutter-cell {
+  color: lightgreen !important;
+}
+
+.marker {
+  position: absolute;
+  top : 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(255, 255, 0, 0.5);
+}
+
+.error_log { 
+  grid-area: error_log; 
+  overflow-y: auto;
+  scrollbar-color: #777 #444;
+  scrollbar-width: thin;
+}

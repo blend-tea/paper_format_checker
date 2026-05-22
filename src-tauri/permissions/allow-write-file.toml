@@ -1,0 +1,4 @@
+[[permission]]
+identifier = "allow-write-file"
+description = "Allows invoking write_file"
+commands.allow = ["write_file"]

@@ -1,0 +1,15 @@
+[comma-space]
+regex = ',[^\s]'
+error = "半角カンマの後ろにはスペースを入れてください"
+
+[zenkaku-comma]
+regex = "、"
+error = "全角カンマ「，」を使用してください"
+
+[hankaku-comma]
+regex = '(?<=[a-zA-Z](?:\\cite\{.*\})?)．'
+error = "半角ピリオド「.」を使用してください"
+
+[cite-error]
+regex = '(?<=[．.])\\cite\{.*\}'
+error = "引用はピリオドの前です"

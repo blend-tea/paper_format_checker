@@ -1,0 +1,4 @@
+[[permission]]
+identifier = "allow-open-rules"
+description = "Allows invoking open_rules"
+commands.allow = ["open_rules"]

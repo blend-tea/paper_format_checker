@@ -1,0 +1,49 @@
+\documentclass[a4paper, 11pt]{article}
+\usepackage{cite}
+
+\title{Paper Format Checker Test Document}
+\author{Test Author}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+
+% --- comma-space: 半角カンマの後にスペースなし（検出されるべき） ---
+This sentence has a bad comma,without a space after it.
+We tested cases A,B,C without spacing.
+
+% comma-space: 正しい例（検出されないべき）
+This sentence has a good comma, with a space after it.
+
+% --- zenkaku-comma: 全角読点「、」の使用（検出されるべき） ---
+本研究では、提案手法の有効性を示す、実験を行った。
+
+% zenkaku-comma: 正しい例（全角カンマ「，」を使用、検出されないべき）
+本研究では，提案手法の有効性を示す，実験を行った．
+
+% --- hankaku-comma: 英字の後の全角ピリオド「．」（検出されるべき） ---
+The accuracy was high．
+The result was significant．
+
+% hankaku-comma: 正しい例（半角ピリオド、検出されないべき）
+The accuracy was high.
+
+\section{Related Work}
+
+% --- cite-error: ピリオドの後ろに \cite{}（検出されるべき） ---
+This approach is widely used．\cite{smith2020}
+A similar method was proposed.\cite{tanaka2019}
+
+% cite-error: 正しい例（引用はピリオドの前、検出されないべき）
+This approach is widely used~\cite{smith2020}．
+
+\section{Conclusion}
+
+% 複合的に問題のある行
+我々は,提案手法を評価した、その結果は良好であった．\cite{yamada2021}
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}

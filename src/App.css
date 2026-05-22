@@ -1,4 +1,4 @@
-.container {  
+.container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr;
@@ -19,11 +19,11 @@
   font-size: 14px;
   scrollbar-color: #777 #444;
   scrollbar-width: thin;
-  grid-area: contents; 
+  grid-area: contents;
   position: relative;
 }
 
-#editor{
+#editor {
   position: absolute;
   top: 0;
   right: 0;
@@ -37,16 +37,34 @@
 
 .marker {
   position: absolute;
-  top : 0;
+  top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   background-color: rgba(255, 255, 0, 0.5);
 }
 
-.error_log { 
-  grid-area: error_log; 
+.error_log {
+  grid-area: error_log;
   overflow-y: auto;
   scrollbar-color: #777 #444;
   scrollbar-width: thin;
+}
+
+.container.drag-over .contents {
+  outline: 2px dashed #7ecfff;
+  outline-offset: -4px;
+}
+
+.drop-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(39, 39, 39, 0.85);
+  color: #7ecfff;
+  font-size: 1.25rem;
+  pointer-events: none;
+  z-index: 10;
 }

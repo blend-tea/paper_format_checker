@@ -1,31 +1,44 @@
-# paper_format_cheker
-論文のフォーマットを正規表現に基づいてチェックします。
+# paper_format_checker
+
+論文のフォーマットを正規表現に基づいてチェックする Tauri 2 アプリです。
 
 ## 使い方
-1. rules.jsonをpaper_format_cheker.exeと同じディレクトリに配置
-2. paper_format_checker.exeを起動
-3. 上部のメニューからFile Open...を選択し開きたいtexファイルを選択する
 
-## rules.jsonの編集方法
-regexに検知させたいルールを正規表現で記述。バックスラッシュを正しく解釈させるためには2つ入力する必要があることに注意。errorにはマッチした際に表示させるエラーテキストを入力。"comma-space"などの名前は自由。デフォルト設定は以下
-```json
-{
-  "comma-space": {
-    "regex": ",[^\\s]",
-    "error": "半角カンマの後ろにはスペースを入れてください"
-  },
-  "zenkaku-comma": {
-    "regex": "、",
-    "error": "全角カンマ「，」を使用してください"
-  },
-  "hankaku-comma": {
-    "regex": "(?<=[a-zA-Z](?:\\\\cite\\{.*\\})?)．",
-    "error": "半角ピリオド「.」を使用してください"
-  },
-  "cite-error": {
-    "regex": "(?<=[．.])\\\\cite\\{.*\\}",
-    "error": "引用はピリオドの前です"
-  }
-}
+1. `rules.toml` を `paper_format_checker.exe` と同じディレクトリに配置（ビルド時に同梱されます）
+2. アプリを起動
+3. メニュー **File → File Open...**、**ドラッグ＆ドロップ**、または `.tex` / `.txt` をドロップして開く
+4. **File → File Save...** または **Ctrl+S** で保存ダイアログを開いて保存
+5. 未保存の変更がある状態で終了すると、保存確認ダイアログが表示されます
+
+設定ファイルは Tauri 2 の TOML 形式で [`src-tauri/Tauri.toml`](src-tauri/Tauri.toml) にあります（`config-toml` feature 使用）。
+
+## 開発
+
+```bash
+npm install
+npm run tauri dev
 ```
-![image.png](./2024-09-08.png)
+
+## ビルド
+
+```bash
+npm run tauri build
+```
+
+リリース後の UPX 圧縮（Linux/macOS の Git Bash 等）:
+
+```bash
+./build.sh
+```
+
+## rules.toml の編集
+
+`regex` に検知ルールを正規表現で記述します。`error` にマッチ時のメッセージを書きます。セクション名（例: `comma-space`）は任意です。
+
+正規表現はシングルクオート（TOML のリテラル文字列）で囲んでください。リテラル文字列ではバックスラッシュがそのまま扱われるため、`\s` や `\{` などをエスケープせずに記述します（ダブルクオートで囲む場合のみ `\\s` のようなエスケープが必要です）。
+
+```toml
+[comma-space]
+regex = ',[^\s]'
+error = "半角カンマの後ろにはスペースを入れてください"
+```
